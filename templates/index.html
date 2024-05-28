@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}" class="stylesheet">
+    <title>signin-page</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#">TODO</a>
+        <div class="ml-auto">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>TODO</h1>
+    {% for message in messages %}
+        <h3>{{message}}</h3>
+    {% endfor %}
+        
+    <form action="/index/" method="post">
+        {% csrf_token %}
+        <input type="text" id="task" name="task" placeholder="ENTER YOUR TASK"/>
+        <button class="btn btn-success" type="submit">submit</button>
+    </form>
+    <hr>
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>TASK</th>
+                <th>DELETE</th>
+                <th>UPDATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for item in items %}
+                <tr>
+                    <td>{{item.task}}</td>
+                    <td><a href="/delete/{{item.id}}">DELETE</a></td>
+                    <td><a href="/update/{{item.id}}">UPDATE</a></td>
+                </tr>
+            {% endfor %}
+                
+        </tbody>
+    </table>
+</body>
+</html>

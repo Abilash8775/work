@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}" class="stylesheet">
+    <title>signin-page</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#">TODO</a>
+        <div class="ml-auto">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>TODO</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="task" value="{{ task.task }}">
+        <button class="btn btn-success" type="submit">Update</button>
+    </form>
+    
+</body>
+</html>
